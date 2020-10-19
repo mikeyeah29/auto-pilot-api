@@ -40,13 +40,12 @@ Route::group([
   'middleware' => 'auth:api',
 ], function() {
 
-    // Route::get('gigs', 'API\GigsController@index');
-    // Route::post('gigs', 'API\GigsController@store');
-    // Route::delete('gigs/{id}', 'API\GigsController@destroy');
-
-    // Route::get('unavailable', 'API\UnavailableController@index');
-    // Route::post('unavailable', 'API\UnavailableController@store');
-    // Route::delete('unavailable/{id}', 'API\UnavailableController@destroy');
+    Route::get('budgets', 'API\BudgetsController@index');
+    Route::post('budgets', 'API\BudgetsController@store');
+    Route::post('budgets/{id}', 'API\BudgetsController@update');
+    Route::post('budgets/{id}/spend', 'API\BudgetsController@spend');
+    Route::post('budgets/{id}/reset', 'API\BudgetsController@reset');
+    Route::delete('budgets/{id}', 'API\BudgetsController@destroy');
 
 });
 
