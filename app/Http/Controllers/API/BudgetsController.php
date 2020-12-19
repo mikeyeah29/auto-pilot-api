@@ -12,9 +12,7 @@ class BudgetsController extends Controller
 {
     public function index() {
 
-    	$budgets = Budget::all();
-
-    	$budgets = Budget::where('user_id', '=', Auth::id())->get();
+    	$budgets = Budget::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
 
         return response()->json([
         	'budgets' => $budgets
@@ -78,7 +76,7 @@ class BudgetsController extends Controller
             return response()->json(['message' => 'Cant do that'], 401);
         }
 
-        $budget->spent = $request->spent;
+        $budget->spent = $budget->spent + $request->spent;
         $budget->save();
 
         return response()->json(['message' => 'Spent updated']);
